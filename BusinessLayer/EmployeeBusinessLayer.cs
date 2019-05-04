@@ -11,12 +11,12 @@ namespace BusinessLayer
 {
     public class EmployeeBusinessLayer
     {
+        string cs = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
         public IEnumerable<Employee> GetAllEmployees
         {
             get
             {
                 List<Employee> employees = new List<Employee>();
-                string cs = ConfigurationManager.ConnectionStrings["DBMS"].ConnectionString;
 
                 using (SqlConnection con = new SqlConnection(cs))
                 {
@@ -38,6 +38,50 @@ namespace BusinessLayer
                     }
                 }
                 return employees;
+            }
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                
+                SqlCommand cmd = new SqlCommand("spAddEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+
+                SqlParameter parName = new SqlParameter();
+                parName.ParameterName = "@Name";
+                parName.Value = employee.Name;
+                cmd.Parameters.Add(parName);
+
+                SqlParameter parGender = new SqlParameter();
+                parGender.ParameterName = "@Gender";
+                parGender.Value = employee.Gender;
+                cmd.Parameters.Add(parGender);
+
+                SqlParameter parCity = new SqlParameter();
+                parCity.ParameterName = "@City";
+                parCity.Value = employee.City;
+                cmd.Parameters.Add(parCity);
+
+                SqlParameter parDateOfBirth = new SqlParameter();
+                parDateOfBirth.ParameterName = "@DateOfBirth";
+                parDateOfBirth.Value = employee.DateOfBirth;
+                cmd.Parameters.Add(parDateOfBirth);
+
+                SqlParameter parEmail = new SqlParameter();
+                parEmail.ParameterName = "@Email";
+                parEmail.Value = employee.Email;
+                cmd.Parameters.Add(parEmail);
+
+                SqlParameter parPassword = new SqlParameter();
+                parPassword.ParameterName = "@Password";
+                parPassword.Value = employee.Password;
+                cmd.Parameters.Add(parPassword);
+
+                cmd.ExecuteNonQuery();
             }
         }
     }

@@ -32,5 +32,14 @@ namespace CRUD_BusinessLayer.Controllers
             else
                 return View(employee);
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+           Employee employee = db.GetAllEmployees.Single(emp => emp.Id == id);
+           db.DeleteEmployee(employee.Id);
+           return RedirectToAction("List");
+        }
+
     }
 }

@@ -84,5 +84,23 @@ namespace BusinessLayer
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void DeleteEmployee(int id)
+        {
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+
+                SqlParameter parId = new SqlParameter();
+                parId.ParameterName = "@Id";
+                parId.Value = id;
+                cmd.Parameters.Add(parId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

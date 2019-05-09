@@ -41,5 +41,22 @@ namespace CRUD_BusinessLayer.Controllers
            return RedirectToAction("List");
         }
 
+        public ActionResult Edit(int id)
+        {
+            Employee employee = db.GetAllEmployees.Single(emp => emp.Id == id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee)
+        {
+            UpdateModel(employee);
+            if (ModelState.IsValid)
+            {
+                db.UpdateEmployee(employee);
+                return RedirectToAction("List");
+            }
+            return View(employee);
+        }
     }
 }

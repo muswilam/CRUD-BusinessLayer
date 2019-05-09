@@ -102,5 +102,52 @@ namespace BusinessLayer
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("spUpdateEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parId = new SqlParameter();
+                parId.ParameterName = "@id";
+                parId.Value = employee.Id;
+                cmd.Parameters.Add(parId);
+
+                SqlParameter parName = new SqlParameter();
+                parName.ParameterName = "@Name";
+                parName.Value = employee.Name;
+                cmd.Parameters.Add(parName);
+
+                SqlParameter parGender = new SqlParameter();
+                parGender.ParameterName = "@Gender";
+                parGender.Value = employee.Gender;
+                cmd.Parameters.Add(parGender);
+
+                SqlParameter parCity = new SqlParameter();
+                parCity.ParameterName = "@City";
+                parCity.Value = employee.City;
+                cmd.Parameters.Add(parCity);
+
+                SqlParameter parDateOfBirth = new SqlParameter();
+                parDateOfBirth.ParameterName = "@DateOfBirth";
+                parDateOfBirth.Value = employee.DateOfBirth;
+                cmd.Parameters.Add(parDateOfBirth);
+
+                SqlParameter parEmail = new SqlParameter();
+                parEmail.ParameterName = "@Email";
+                parEmail.Value = employee.Email;
+                cmd.Parameters.Add(parEmail);
+
+                SqlParameter parPassword = new SqlParameter();
+                parPassword.ParameterName = "@Password";
+                parPassword.Value = employee.Password;
+                cmd.Parameters.Add(parPassword);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

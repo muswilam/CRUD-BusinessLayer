@@ -44,6 +44,7 @@ namespace CRUD_BusinessLayer.Controllers
         public ActionResult Edit(int id)
         {
             Employee employee = db.GetAllEmployees.Single(emp => emp.Id == id);
+            employee.confirmPass = employee.Password;
             return View(employee);
         }
 
@@ -53,7 +54,9 @@ namespace CRUD_BusinessLayer.Controllers
             UpdateModel(employee);
             if (ModelState.IsValid)
             {
+
                 db.UpdateEmployee(employee);
+
                 return RedirectToAction("List");
             }
             return View(employee);

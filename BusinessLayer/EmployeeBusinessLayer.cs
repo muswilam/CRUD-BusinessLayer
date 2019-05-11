@@ -33,6 +33,8 @@ namespace BusinessLayer
                         employee.Gender = (string)rdr["Gender"];
                         employee.City = (string)rdr["City"];
                         employee.DateOfBirth = (DateTime)rdr["DateOfBirth"];
+                        employee.Email =rdr["Email"].ToString();
+                        employee.Password =rdr["Password"].ToString();
 
                         employees.Add(employee);
                     }
@@ -149,5 +151,6 @@ namespace BusinessLayer
                 cmd.ExecuteNonQuery();
             }
         }
+
     }
 }

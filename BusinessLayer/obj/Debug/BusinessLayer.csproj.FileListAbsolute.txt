@@ -8,3 +8,4 @@ C:\Users\Magic\Documents\Visual Studio 2013\Projects\MVC Cource\CRUD-BusinessLay
 C:\Users\Magic\Documents\Visual Studio 2013\Projects\MVC Cource\CRUD-BusinessLayer\BusinessLayer\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\Magic\Documents\Visual Studio 2013\Projects\MVC Cource\CRUD-BusinessLayer\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\Magic\Documents\Visual Studio 2013\Projects\MVC Cource\CRUD-BusinessLayer\BusinessLayer\obj\Debug\BusinessLayer.pdb
+C:\Users\Magic\Documents\Visual Studio 2013\Projects\MVC Cource\CRUD-BusinessLayer\BusinessLayer\bin\Debug\Newtonsoft.Json.dll

@@ -11,11 +11,13 @@ namespace CRUD_BusinessLayer.Controllers
     {
         EmployeeBusinessLayer db = new EmployeeBusinessLayer();
 
+        //List of Employees 
         public ActionResult List()
         {
             return View(db.GetAllEmployees.ToList());
         }
 
+        //Get 
         public ActionResult Add()
         {
             return View();
@@ -59,6 +61,13 @@ namespace CRUD_BusinessLayer.Controllers
 
                 return RedirectToAction("List");
             }
+            return View(employee);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Employee employee = db.GetAllEmployees.Single(emp => emp.Id == id);
+            employee.confirmPass = employee.Password;
             return View(employee);
         }
     }

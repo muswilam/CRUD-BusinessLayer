@@ -152,5 +152,34 @@ namespace BusinessLayer
             }
         }
 
+        public void EmployeeDetails(int id)
+        {
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                List<Employee> employees = new List<Employee>();
+                SqlCommand cmd = new SqlCommand("spEmployeeDetails", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                //continue details functionality 
+                while(rdr.Read())
+                {
+                    Employee employee = new Employee();
+                    employee.Id = id;
+                    employee.Name = (string)rdr["Name"];
+                    employee.Gender =(string)rdr["Gender"];
+                    employee.City = (string)rdr["City"];
+                    employee.DateOfBirth = (DateTime)rdr["DateOfBirth"];
+                    employee.Email = (string)rdr["Email"];
+                    employee.Password = (string)rdr["Password"];
+
+                    employees.Add(employee);
+                }
+            }
+
+        }
+
     }
 }
